@@ -112,6 +112,28 @@ Serverpod バックエンドのセットアップは以下の手順で行いま�
       docker-compose up -d
       ```
 
+    - **Redis の導入（推奨）:**
+
+      Serverpod ではセッション管理やキャッシュなどの用途で Redis の利用が推奨されます。  
+      Docker を利用する場合、`docker-compose.yml` に Redis サービスが含まれていれば自動的に起動します。  
+      手動でインストールする場合は、[公式サイト](https://redis.io/download) からインストールしてください。
+
+      例（Docker で単体起動）:
+
+      ```bash
+      docker run --name redis-server -p 6379:6379 -d redis
+      ```
+
+      Serverpod の設定ファイル（例: `config/development.yaml`）で Redis の接続情報を設定してください。
+
+      ```yaml
+      redis:
+        host: localhost
+        port: 6379
+      ```
+
+      Redis を導入することで、パフォーマンス向上や一部機能（セッション管理・キャッシュ等）が有効になります。
+
     - **手動でインストールする場合:**
 
       お使いの OS に合った方法で PostgreSQL をインストールし、データベースユーザーとデータベースを作成してください。
@@ -178,3 +200,22 @@ Serverpod バックエンドのセットアップは以下の手順で行いま�
     サーバーはデフォルトで 8080 ポートでリクエストを待ち受けます。
 
 これで、Flutter フロントエンドと Serverpod バックエンドが連携して動作する準備が整いました。
+
+---
+
+### Material Design（Google Design）の利用について
+
+Flutter では Material Design がデフォルトでサポートされています。  
+特別な導入作業は不要ですが、アプリの UI/UX 向上のために Material Design の利用を推奨します。
+
+- ルートウィジェットで `MaterialApp` を使用し、`ThemeData` でテーマをカスタマイズできます。
+- 詳細は[公式ドキュメント](https://docs.flutter.dev/ui/design/material)を参照してください。
+
+---
+
+### TailwindCSS の利用について
+
+Flutter では直接 TailwindCSS を利用できませんが、必要に応じて `tailwindcss-flutter` パッケージなどを活用することも可能です。  
+利用が必要な場合は、公式ドキュメントやパッケージのリファレンスなどを個別に調べて導入・利用してください。
+
+---
