@@ -1,4 +1,4 @@
-# dart-typing
+# dart-typing(構築例 GenBy GPT)
 
 Dart と Flutterでweb application を構築してみる
 
