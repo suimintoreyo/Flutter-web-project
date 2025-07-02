@@ -154,3 +154,48 @@ Serverpodのモノレポ枠組みとFlutterのレイヤードアーキテクチ�
 5. [Layout | Flutter](https://docs.flutter.dev/ui/layout) (2025/07/02アクセス)
 6. [Directory Structure | FlutterFlow Documentation](https://docs.flutterflow.io/generated-code/project-structure/) (2025/07/02アクセス)
 7. [Build your first app - Installation | Serverpod](https://docs.serverpod.dev/tutorials/first-app) (2025/07/02アクセス)
+
+---
+
+## ディレクトリツリー例
+
+以下は、Serverpod＋Flutterモノレポの典型的なディレクトリツリー例です。
+
+```
+<project_root>/
+├── <project_name>_server/
+│   ├── bin/
+│   ├── config/
+│   └── lib/
+│       └── src/
+│           ├── endpoints/
+│           ├── generated/
+│           └── protocol/
+├── <project_name>_client/
+│   └── lib/
+│       └── src/
+│           └── generated/
+├── <project_name>_flutter/
+│   ├── assets/
+│   └── lib/
+│       ├── auth/
+│       ├── backend/
+│       ├── data/
+│       │   ├── models/
+│       │   ├── repositories/
+│       │   └── services/
+│       ├── domain/
+│       ├── generated/
+│       ├── ui/
+│       │   ├── components/
+│       │   ├── pages/
+│       │   └── widgets/
+│       ├── utils/
+│       ├── view_models/
+│       └── main.dart
+├── .vscode/
+├── docker-compose.yaml
+├── README.md
+├── SETUP.md
+└── pubspec.yaml
+```
