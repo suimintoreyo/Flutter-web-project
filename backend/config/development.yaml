@@ -1,0 +1,10 @@
+database:
+  host: localhost
+  port: 5432
+  name: dart_typing_db
+  user: serverpod_user
+  password: your_password
+
+redis:
+  host: localhost
+  port: 6379

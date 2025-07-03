@@ -1,0 +1,24 @@
+name: flutter_web_project
+description: A web application built with Dart and Flutter using Serverpod for the backend.
+
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  dart_typing_client: ^1.0.0 # Adjust the version as necessary
+  serverpod_flutter: ^1.0.0 # Adjust the version as necessary
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/ # Add your asset paths here if needed
+    - assets/icons/   # Add your asset paths here if needed
