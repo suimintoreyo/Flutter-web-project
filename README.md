@@ -1,4 +1,4 @@
-# dart-typing
+# dlutter-web-application
 
 Dart と Flutter で web application を構築してみる
 
