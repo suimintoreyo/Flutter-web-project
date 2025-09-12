@@ -1,0 +1,7 @@
+class: User
+table: users
+fields:
+  id: int?
+  email: String
+  hashedPassword: String
+  createdAt: DateTime

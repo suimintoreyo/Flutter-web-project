@@ -1,0 +1,15 @@
+name: flutter_web_project_server
+description: Serverpod backend for Flutter Web Project
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  serverpod: ^1.2.5
+  serverpod_auth: ^1.2.5
+  crypto: ^3.0.2
+
+dev_dependencies:
+  lints: ^2.0.0
