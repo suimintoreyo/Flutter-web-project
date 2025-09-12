@@ -1,0 +1,20 @@
+db:
+  - addTable:
+      name: users
+      columns:
+        - name: id
+          type: serial
+          primaryKey: true
+        - name: email
+          type: text
+          notNull: true
+        - name: hashedPassword
+          type: text
+          notNull: true
+        - name: createdAt
+          type: timestamp
+          notNull: true
+      indexes:
+        - columns:
+            - email
+          unique: true
