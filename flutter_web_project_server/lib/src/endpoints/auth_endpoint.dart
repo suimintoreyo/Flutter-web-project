@@ -1,20 +1,21 @@
 import 'package:serverpod/serverpod.dart';
-import 'package:crypto/crypto.dart';
-import 'dart:convert';
+import 'package:bcrypt/bcrypt.dart';
 
 import '../generated/protocol.dart';
 
 class AuthEndpoint extends Endpoint {
-  /// Registers a new user with [email] and [password]. Returns true if the
-  /// registration succeeded, otherwise false if the email is already in use.
-  Future<bool> register(Session session, String email, String password) async {
+  /// Registers a new user with [email] and [password]. Returns a session
+  /// token if registration succeeded, otherwise null if the email is already
+  /// in use.
+  Future<String?> register(
+      Session session, String email, String password) async {
     var existing = await User.findSingleRow(
       session,
       where: (t) => t.email.equals(email),
     );
-    if (existing != null) return false;
+    if (existing != null) return null;
 
-    var hashedPassword = sha256.convert(utf8.encode(password)).toString();
+    var hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt());
     var user = User(
       email: email,
       hashedPassword: hashedPassword,
@@ -27,22 +28,22 @@ class AuthEndpoint extends Endpoint {
       await session.updateUserId(user.id!);
     }
 
-    return true;
+    return session.authenticationKey;
   }
 
-  /// Logs in a user with the provided [email] and [password]. Returns true if
-  /// authentication is successful.
-  Future<bool> login(Session session, String email, String password) async {
+  /// Logs in a user with the provided [email] and [password]. Returns a
+  /// session token if authentication is successful, otherwise null.
+  Future<String?> login(
+      Session session, String email, String password) async {
     var user = await User.findSingleRow(
       session,
       where: (t) => t.email.equals(email),
     );
-    if (user == null) return false;
+    if (user == null) return null;
 
-    var hashedPassword = sha256.convert(utf8.encode(password)).toString();
-    if (user.hashedPassword != hashedPassword) return false;
+    if (!BCrypt.checkpw(password, user.hashedPassword)) return null;
 
     await session.updateUserId(user.id!);
-    return true;
+    return session.authenticationKey;
   }
 }
