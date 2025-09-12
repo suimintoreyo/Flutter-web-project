@@ -34,3 +34,13 @@ Dart と Flutter で web application を構築してみる
 | tailwindcss-flutter | 0.7.0        |
 
 > ※ご利用の環境や要件に合わせてバージョンを調整してください。
+
+## 現在のシステム構成
+
+- **フロントエンド:** `flutter_web_project_flutter`（Flutter 3.22.0）
+- **バックエンド:** `flutter_web_project_server`
+  - Serverpod 1.2.5
+  - PostgreSQL 15.x
+  - Redis 7.x
+- **開発環境:** Visual Studio Code、Docker（PostgreSQL/Redis 用）、macOS/Windows/Linux
+
