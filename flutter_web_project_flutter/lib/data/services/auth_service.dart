@@ -44,8 +44,15 @@ class AuthService {
     client.authenticationKeyManager.replaceKey(token);
   }
 
-  /// Reads the locally stored session token, if any.
-  Future<String?> getStoredToken() => _storage.read(key: _tokenKey);
+  /// Reads the locally stored session token, if any, and ensures the client
+  /// authentication manager uses it for subsequent requests.
+  Future<String?> getStoredToken() async {
+    final token = await _storage.read(key: _tokenKey);
+    if (token != null) {
+      client.authenticationKeyManager.replaceKey(token);
+    }
+    return token;
+  }
 
   /// Clears the session from secure storage and the client.
   Future<void> logout() async {
